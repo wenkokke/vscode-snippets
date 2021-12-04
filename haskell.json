@@ -1,0 +1,137 @@
+{
+	"=": {
+		"prefix": "=",
+		"body": "${1:name} ${2:pattern}${2/.+/ /}= ${0:definition}",
+		"description": "Definition",
+	},
+	"fun": {
+		"prefix": "fun",
+		"body": "${1:name} :: ${2:Type}\n${1} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}",
+		"description": "Function",
+	},
+	"|": {
+		"prefix": "|",
+		"body": "| ${1:predicate} = ${0:definition}",
+		"description": "Guard",
+	},
+	"|1": {
+		"prefix": "|",
+		"body": "| ${0:documentation}",
+		"description": "Haddock Postfix",
+	},
+	"^": {
+		"prefix": "^",
+		"body": "^ ${0:documentation}",
+		"description": "Haddock Prefix",
+	},
+	"\\": {
+		"prefix": "\\",
+		"body": "\\\\${1:pattern} -> ${0:expression}",
+		"description": "Lambda Expression",
+	},
+	"<": {
+		"prefix": "<",
+		"body": "${1:name} <- ${0:expression}",
+		"description": "Left Arrow",
+	},
+	"[": {
+		"prefix": "[",
+		"body": "[ ${1:expression} | ${2:name} <- ${3:expression}${4/.+/, /}${4:condition} ",
+		"description": "List Comprehension",
+	},
+	"main": {
+		"prefix": "main",
+		"body": "module Main where\n\nmain :: IO ()\nmain = ${0:putStrLn \"Hello World\"}\n",
+		"description": "Main",
+	},
+	">": {
+		"prefix": ">",
+		"body": "${1:expression} -> ${0:expression}",
+		"description": "Right Arrow",
+	},
+	"=1": {
+		"prefix": "=",
+		"body": "(${1:Class}) => $0",
+		"description": "Type Constraint",
+	},
+	"-": {
+		"prefix": "-",
+		"body": "${1:Type} -> ${0:Type}",
+		"description": "Type Sequence",
+	},
+	"::": {
+		"prefix": "::",
+		"body": "${1:name} :: ${0:Type}",
+		"description": "Type Signature",
+	},
+	"case": {
+		"prefix": "case",
+		"body": "case ${1:expression} of\n\t${2:pattern} -> ${3:expression}\n\t${4:otherwise} -> ${5:expression}",
+		"description": "case … of …",
+	},
+	"cla": {
+		"prefix": "cla",
+		"body": "class ${1:Class} where\n\t${0:definition}",
+		"description": "class …",
+	},
+	"dat": {
+		"prefix": "dat",
+		"body": "data ${1:Type} = ${0:Other}",
+		"description": "data …",
+	},
+	"der": {
+		"prefix": "der",
+		"body": "deriving (${0:Class})",
+		"description": "deriving …",
+	},
+	"do": {
+		"prefix": "do",
+		"body": "do\n\t${1:return ${0:expression}}",
+		"description": "do …",
+	},
+	"if": {
+		"prefix": "if",
+		"body": "if ${1:condition}\n\tthen ${2:expression}\n\telse ${3:expression}",
+		"description": "if … then … else …",
+	},
+	"imph": {
+		"prefix": "imph",
+		"body": "import ${1:Module}${2/.+/ hiding (/}${2:function}${2/.+/)/}$0",
+		"description": "import … hiding …",
+	},
+	"imp": {
+		"prefix": "imp",
+		"body": "import ${1:Module}${2/.+/ (/}${2:function}${2/.+/)/}$0",
+		"description": "import …",
+	},
+	"impq": {
+		"prefix": "impq",
+		"body": "import qualified ${1:Module}${2/.+/ as /}${2:Mod}${3/.+/ (/}${3:function}${3/.+/)/}$0",
+		"description": "import qualified …",
+	},
+	"ins": {
+		"prefix": "ins",
+		"body": "instance ${1:Class} ${2:Type} where\n\t${0:definition}",
+		"description": "instance …",
+	},
+	"let": {
+		"prefix": "let",
+		"body": "let\n\t${1:name} = ${2:expression}\n\tin ${0:expression}",
+		"description": "let …",
+	},
+	"new": {
+		"prefix": "new",
+		"body": "newtype ${1:Type} = ${0:Other}",
+		"description": "newtype …",
+	},
+	"typ": {
+		"prefix": "typ",
+		"body": "type ${1:Type} = ${0:Other}",
+		"description": "type …",
+	},
+	"where": {
+		"prefix": "where",
+		"body": "where\n\t${0:definitions}",
+		"description": "where …",
+	}
+}
