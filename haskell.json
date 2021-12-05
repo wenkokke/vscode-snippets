@@ -1,41 +1,96 @@
 {
-	"=": {
-		"prefix": "=",
-		"body": "${1:name} ${2:pattern}${2/.+/ /}= ${0:definition}",
-		"description": "Definition",
-	},
-	"fun": {
-		"prefix": "fun",
+	"define function": {
+		"prefix": "define",
 		"body": "${1:name} :: ${2:Type}\n${1} ${3:pattern}${3/.+/ /}${4/.+/= /}${4:definition}",
-		"description": "Function",
+		"description": "Function Definition with Type Signature",
 	},
-	"|": {
-		"prefix": "|",
+	"define function bare": {
+		"prefix": "define",
+		"body": "${1:name} ${2:pattern}${2/.+/ /}= ${0:definition}",
+		"description": "Function Definition",
+	},
+	"define data type": {
+		"prefix": "define",
+		"body": "data ${1:Type} = ${0:Other}",
+		"description": "data …",
+	},
+	"define new type": {
+		"prefix": "define",
+		"body": "newtype ${1:Type} = ${0:Other}",
+		"description": "newtype …",
+	},
+	"define type alias": {
+		"prefix": "define",
+		"body": "type ${1:Type} = ${0:Other}",
+		"description": "type …",
+	},
+	"define type family": {
+		"prefix": "define",
+		"body": "type family ${1:Type} ${0:pattern}",
+		"description": "type family …",
+	},
+	"define type instance": {
+		"prefix": "define",
+		"body": "type instance ${1:Type} ${0:pattern} = ${0:Other}",
+		"description": "type instance …",
+	},
+	"define closed type family": {
+		"prefix": "define",
+		"body": "type family ${1:Type} ${2:arguments} where\n\t${1:Type} ${3:pattern} = ${4:Type}\n\t${1:Type} ${5:otherwise} = ${6:Type}",
+		"description": "type family …",
+	},
+	"define class": {
+		"prefix": "define",
+		"body": "class ${1:Class} where\n\t${0:definition}",
+		"description": "class …",
+	},
+	"define instance": {
+		"prefix": "define",
+		"body": "instance ${1:Class} ${2:Type} where\n\t${0:definition}",
+		"description": "instance …",
+	},
+	"has type": {
+		"prefix": "has",
+		"body": "${1:name} :: ${0:Type}",
+		"description": "Type Signature",
+	},
+	"has instance": {
+		"prefix": "has",
+		"body": "(${1:Class}) => $0",
+		"description": "Type Constraint",
+	},
+	"goes to": {
+		"prefix": "goes",
+		"body": "${1:Type} -> ${0:Type}",
+		"description": "Right Arrow",
+	},
+	"guard": {
+		"prefix": "guard",
 		"body": "| ${1:predicate} = ${0:definition}",
 		"description": "Guard",
 	},
-	"|1": {
-		"prefix": "|",
+	"haddock": {
+		"prefix": "haddock",
 		"body": "| ${0:documentation}",
-		"description": "Haddock Postfix",
+		"description": "Haddock Before",
 	},
-	"^": {
-		"prefix": "^",
+	"haddock after": {
+		"prefix": "haddock",
 		"body": "^ ${0:documentation}",
-		"description": "Haddock Prefix",
+		"description": "Haddock After",
 	},
-	"\\": {
-		"prefix": "\\",
+	"lambda": {
+		"prefix": "lambda",
 		"body": "\\\\${1:pattern} -> ${0:expression}",
 		"description": "Lambda Expression",
 	},
-	"<": {
-		"prefix": "<",
+	"from": {
+		"prefix": "from",
 		"body": "${1:name} <- ${0:expression}",
 		"description": "Left Arrow",
 	},
-	"[": {
-		"prefix": "[",
+	"list comprehension": {
+		"prefix": "list",
 		"body": "[ ${1:expression} | ${2:name} <- ${3:expression}${4/.+/, /}${4:condition} ",
 		"description": "List Comprehension",
 	},
@@ -44,40 +99,10 @@
 		"body": "module Main where\n\nmain :: IO ()\nmain = ${0:putStrLn \"Hello World\"}\n",
 		"description": "Main",
 	},
-	">": {
-		"prefix": ">",
-		"body": "${1:expression} -> ${0:expression}",
-		"description": "Right Arrow",
-	},
-	"=1": {
-		"prefix": "=",
-		"body": "(${1:Class}) => $0",
-		"description": "Type Constraint",
-	},
-	"-": {
-		"prefix": "-",
-		"body": "${1:Type} -> ${0:Type}",
-		"description": "Type Sequence",
-	},
-	"::": {
-		"prefix": "::",
-		"body": "${1:name} :: ${0:Type}",
-		"description": "Type Signature",
-	},
 	"case": {
 		"prefix": "case",
 		"body": "case ${1:expression} of\n\t${2:pattern} -> ${3:expression}\n\t${4:otherwise} -> ${5:expression}",
 		"description": "case … of …",
-	},
-	"cla": {
-		"prefix": "cla",
-		"body": "class ${1:Class} where\n\t${0:definition}",
-		"description": "class …",
-	},
-	"dat": {
-		"prefix": "dat",
-		"body": "data ${1:Type} = ${0:Other}",
-		"description": "data …",
 	},
 	"der": {
 		"prefix": "der",
@@ -109,25 +134,10 @@
 		"body": "import qualified ${1:Module}${2/.+/ as /}${2:Mod}${3/.+/ (/}${3:function}${3/.+/)/}$0",
 		"description": "import qualified …",
 	},
-	"ins": {
-		"prefix": "ins",
-		"body": "instance ${1:Class} ${2:Type} where\n\t${0:definition}",
-		"description": "instance …",
-	},
 	"let": {
 		"prefix": "let",
 		"body": "let\n\t${1:name} = ${2:expression}\n\tin ${0:expression}",
 		"description": "let …",
-	},
-	"new": {
-		"prefix": "new",
-		"body": "newtype ${1:Type} = ${0:Other}",
-		"description": "newtype …",
-	},
-	"typ": {
-		"prefix": "typ",
-		"body": "type ${1:Type} = ${0:Other}",
-		"description": "type …",
 	},
 	"where": {
 		"prefix": "where",
